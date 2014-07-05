@@ -57,6 +57,14 @@ SRCS=\
 	src\core\sys\posix\netinet\in_.d \
 	src\core\sys\posix\arpa\inet.d \
 	\
+	src\core\sys\solaris\sys\auxv.d \
+	src\core\sys\solaris\sys\auxv_386.d \
+	src\core\sys\solaris\sys\auxv_SPARC.d \
+	src\core\sys\solaris\sys\mman.d \
+	src\core\sys\solaris\dlfcn.d \
+	src\core\sys\solaris\link.d \
+	src\core\sys\solaris\execinfo.d \
+	\
 	src\core\sys\windows\dbghelp.d \
 	src\core\sys\windows\dll.d \
 	src\core\sys\windows\stacktrace.d \

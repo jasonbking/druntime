@@ -1,6 +1,7 @@
 module core.sys.solaris.sys.mman;
 
 import core.sys.posix.sys.types : caddr_t;
+import core.sys.posix.sys.mman : MAP_ANON;
 
 version(Solaris):
 extern (C):
@@ -31,7 +32,7 @@ enum {
 
 enum MMOBJ_PADDING      = 0x10000;
 enum MMOBJ_INTERPRET    = 0x20000;
-alias MMOBJ_ALL_FLAGS   = (MMOBJ_PADDING | MMOBJ_INTERPRET);
+enum MMOBJ_ALL_FLAGS   = (MMOBJ_PADDING | MMOBJ_INTERPRET);
 
 // values for mr_flags
 enum MR_PADDING  = 0x1;

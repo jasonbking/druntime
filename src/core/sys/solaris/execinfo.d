@@ -9,6 +9,7 @@ module core.sys.solaris.execinfo;
 
 version (Solaris):
 extern (C):
+nothrow:
 
 int backtrace(void** buffer, int size);
 char** backtrace_symbols(const(void*)* buffer, int size);

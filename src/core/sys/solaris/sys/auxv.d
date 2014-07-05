@@ -15,10 +15,6 @@ struct auxv_t {
     }
     __a_un  a_un;
 }
-version (X86)
-    static assert (auxv_t.sizeof == 8);
-version (X86_64)
-    static assert (auxv_t.sizeof == 12);
 
 enum {
     AT_NULL             = 0,
