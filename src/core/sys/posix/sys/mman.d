@@ -80,6 +80,17 @@ else version( FreeBSD )
 }
 else version (Solaris)
 {
+    import core.sys.solaris.sys.mman;
+
+    // These are required to be kept in sync with the MADV_ values
+    // so just alias those to enforce this
+    alias MADV_NORMAL       POSIX_MADV_NORMAL;
+    alias MADV_RANDOM       POSIX_MADV_RANDOM;
+    alias MADV_SEQUENTIAL   POSIX_MADV_SEQUENTIAL;
+    alias MADV_WILLNEED     POSIX_MADV_WILLNEED;
+    alias MADV_DONTNEED     POSIX_MADV_DONTNEED;
+
+    int posix_madvise(void *addr, size_t len, int advice);
 }
 else version (Android)
 {
@@ -168,7 +179,23 @@ else version( FreeBSD )
 }
 else version (Solaris)
 {
-    void* mmap(void*, size_t, int, int, int, off_t);
+    version (D_LP64)
+    {
+        void* mmap(void*, size_t, int, int, int, off_t);
+        static if (__USE_LARGEFILE64)
+            alias mmap mmap64;
+    }
+    else
+    {
+        static if (__USE_LARGEFILE64)
+            void* mmap64(void*, size_t, int, int, int, off64_t);
+
+        static if (__USE_FILE_OFFSET64)
+            alias mmap64 mmap;
+        else
+            void* mmap(void*, size_t, int, int, int, off_t);
+    }
+
     int   munmap(void*, size_t);
 }
 else version (Android)
