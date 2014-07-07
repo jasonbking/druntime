@@ -143,6 +143,7 @@ else version( FreeBSD )
 else version (Solaris)
 {
     int sem_timedwait(sem_t*, in timespec*);
+    int sem_reltimedwait_np(sem_t*, in timespec*);
 }
 else version( Android )
 {
